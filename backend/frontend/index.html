@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inkwell — A Modern Blog</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="light">
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="logo" href="#" onclick="navigate('home')">
+        <i class="fa-solid fa-feather-pointed"></i> Inkwell
+      </a>
+      <div class="nav-links">
+        <a href="#" onclick="navigate('home')" class="nav-link">Home</a>
+        <span id="nav-auth-links">
+          <a href="#" onclick="navigate('login')" class="nav-link">Login</a>
+          <a href="#" onclick="navigate('register')" class="btn btn-primary btn-sm">Get Started</a>
+        </span>
+        <span id="nav-user-links" style="display:none">
+          <a href="#" onclick="navigate('new-post')" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Post</a>
+          <div class="avatar-menu">
+            <div class="avatar" id="nav-avatar" onclick="toggleAvatarMenu()"></div>
+            <div class="dropdown" id="avatar-dropdown">
+              <span id="dropdown-username" class="dropdown-name"></span>
+              <a href="#" onclick="navigate('my-posts')"><i class="fa fa-newspaper"></i> My Posts</a>
+              <a href="#" onclick="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
+            </div>
+          </div>
+        </span>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+          <i class="fa fa-moon" id="theme-icon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <!-- PAGES -->
+  <main id="app">
+
+    <!-- HOME -->
+    <div id="page-home" class="page active">
+
+      <!-- HERO -->
+      <section class="hero-mag">
+        <div class="hero-mag-inner">
+
+          <!-- Left: Branding + tagline -->
+          <div class="hero-mag-left">
+            <div class="hero-mag-issue">Est. 2024 &nbsp;·&nbsp; Vol. 01</div>
+            <h1 class="hero-mag-title">
+              <span class="hero-mag-title-top">INK</span>
+              <span class="hero-mag-title-mid">WELL</span>
+              <span class="hero-mag-title-sub">Magazine</span>
+            </h1>
+            <p class="hero-mag-desc">A curated space for writers, thinkers & storytellers. Publish your voice. Discover new perspectives.</p>
+            <div class="hero-mag-actions">
+              <a href="#" onclick="navigate('register')" class="btn-mag-primary">Start Writing <i class="fa fa-arrow-right"></i></a>
+              <a href="#posts-section" class="btn-mag-ghost">Browse Issues</a>
+            </div>
+          </div>
+
+          <!-- Center: Big featured image -->
+          <div class="hero-mag-center">
+            <div class="hero-mag-featured" id="hero-featured">
+              <div class="hero-mag-featured-img">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80" alt="featured" />
+                <div class="hero-mag-featured-overlay">
+                  <span class="hero-mag-tag">Featured</span>
+                  <h2 class="hero-mag-featured-title">The Art of Writing in the Digital Age</h2>
+                  <div class="hero-mag-featured-meta">By Inkwell Editors &nbsp;·&nbsp; 5 min read</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Stats + side cards -->
+          <div class="hero-mag-right">
+            <div class="hero-mag-stat-block">
+              <div class="hero-mag-stat"><span class="hero-mag-stat-num" id="stat-posts">0</span><span class="hero-mag-stat-label">Stories</span></div>
+              <div class="hero-mag-stat-divider"></div>
+              <div class="hero-mag-stat"><span class="hero-mag-stat-num" id="stat-writers">0</span><span class="hero-mag-stat-label">Writers</span></div>
+            </div>
+            <div class="hero-mag-side-cards" id="hero-side-cards">
+              <div class="hero-mag-side-card">
+                <div class="hero-mag-side-num">01</div>
+                <div class="hero-mag-side-info">
+                  <div class="hero-mag-side-cat">Culture</div>
+                  <div class="hero-mag-side-title">Words that shape the world around us</div>
+                </div>
+              </div>
+              <div class="hero-mag-side-card">
+                <div class="hero-mag-side-num">02</div>
+                <div class="hero-mag-side-info">
+                  <div class="hero-mag-side-cat">Technology</div>
+                  <div class="hero-mag-side-title">How AI is changing the way we write</div>
+                </div>
+              </div>
+              <div class="hero-mag-side-card">
+                <div class="hero-mag-side-num">03</div>
+                <div class="hero-mag-side-info">
+                  <div class="hero-mag-side-cat">Lifestyle</div>
+                  <div class="hero-mag-side-title">Finding your creative voice every day</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Ticker -->
+        <div class="hero-ticker">
+          <div class="hero-ticker-track">
+            <span>Write &nbsp;✦&nbsp; Inspire &nbsp;✦&nbsp; Connect &nbsp;✦&nbsp; Discover &nbsp;✦&nbsp; Create &nbsp;✦&nbsp; Share &nbsp;✦&nbsp; Explore &nbsp;✦&nbsp; Publish &nbsp;✦&nbsp; Write &nbsp;✦&nbsp; Inspire &nbsp;✦&nbsp; Connect &nbsp;✦&nbsp; Discover &nbsp;✦&nbsp; Create &nbsp;✦&nbsp; Share &nbsp;✦&nbsp; Explore &nbsp;✦&nbsp; Publish &nbsp;✦&nbsp;</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="posts-section" id="posts-section">
+        <div class="section-header">
+          <h2>Latest Posts</h2>
+          <div class="search-bar">
+            <i class="fa fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search posts..." oninput="filterPosts()" />
+          </div>
+        </div>
+        <div id="posts-grid" class="posts-grid">
+          <div class="skeleton-grid">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="page-login" class="page">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <i class="fa-solid fa-feather-pointed auth-logo"></i>
+            <h2>Welcome back</h2>
+            <p>Sign in to your account</p>
+          </div>
+          <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label>Email</label>
+              <div class="input-wrap"><i class="fa fa-envelope"></i><input type="email" id="login-email" placeholder="you@example.com" required /></div>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <div class="input-wrap"><i class="fa fa-lock"></i><input type="password" id="login-password" placeholder="••••••••" required /><button type="button" class="eye-btn" onclick="togglePass('login-password',this)"><i class="fa fa-eye"></i></button></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="login-btn">Sign In</button>
+          </form>
+          <p class="auth-switch">Don't have an account? <a href="#" onclick="navigate('register')">Sign up</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="page-register" class="page">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <i class="fa-solid fa-feather-pointed auth-logo"></i>
+            <h2>Create account</h2>
+            <p>Join the Inkwell community</p>
+          </div>
+          <form onsubmit="handleRegister(event)">
+            <div class="form-group">
+              <label>Username</label>
+              <div class="input-wrap"><i class="fa fa-user"></i><input type="text" id="reg-username" placeholder="johndoe" required /></div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <div class="input-wrap"><i class="fa fa-envelope"></i><input type="email" id="reg-email" placeholder="you@example.com" required /></div>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <div class="input-wrap"><i class="fa fa-lock"></i><input type="password" id="reg-password" placeholder="••••••••" required /><button type="button" class="eye-btn" onclick="togglePass('reg-password',this)"><i class="fa fa-eye"></i></button></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="reg-btn">Create Account</button>
+          </form>
+          <p class="auth-switch">Already have an account? <a href="#" onclick="navigate('login')">Sign in</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW / EDIT POST -->
+    <div id="page-new-post" class="page">
+      <div class="editor-container">
+        <div class="editor-header">
+          <h2 id="editor-title">New Post</h2>
+        </div>
+        <form onsubmit="handlePostSubmit(event)" class="editor-form">
+          <input type="hidden" id="edit-post-id" />
+          <div class="form-group">
+            <input type="text" id="post-title" class="title-input" placeholder="Post title..." required />
+          </div>
+          <div class="form-group">
+            <input type="url" id="post-cover" class="cover-input" placeholder="Cover image URL (optional)" />
+          </div>
+          <div class="form-group">
+            <div class="editor-toolbar">
+              <button type="button" onclick="fmt('bold')"><i class="fa fa-bold"></i></button>
+              <button type="button" onclick="fmt('italic')"><i class="fa fa-italic"></i></button>
+              <button type="button" onclick="fmt('underline')"><i class="fa fa-underline"></i></button>
+              <span class="sep"></span>
+              <button type="button" onclick="insertHeading()"><i class="fa fa-heading"></i></button>
+              <button type="button" onclick="insertQuote()"><i class="fa fa-quote-left"></i></button>
+            </div>
+            <div id="post-content" class="content-editor" contenteditable="true" data-placeholder="Write your story..."></div>
+          </div>
+          <div class="editor-actions">
+            <button type="button" class="btn btn-outline" onclick="navigate('home')">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="post-submit-btn">Publish Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- POST DETAIL -->
+    <div id="page-post-detail" class="page">
+      <div id="post-detail-content"></div>
+    </div>
+
+    <!-- MY POSTS -->
+    <div id="page-my-posts" class="page">
+      <div class="my-posts-container">
+        <div class="section-header">
+          <h2>My Posts</h2>
+          <a href="#" onclick="navigate('new-post')" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Post</a>
+        </div>
+        <div id="my-posts-list" class="posts-grid"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2024 Inkwell. Crafted with <i class="fa fa-heart" style="color:#e74c3c"></i> for writers.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

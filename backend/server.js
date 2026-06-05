@@ -151,10 +151,10 @@ app.delete('/api/comments/:id', auth, (req, res) => {
 });
 
 // ── SERVE FRONTEND ───────────────────────────────────────────────────────────
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, 'frontend')));
 app.get('*', (req, res) => {
   if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    res.sendFile(path.join(__dirname, 'frontend/index.html'));
   }
 });
 
