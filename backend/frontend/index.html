@@ -74,60 +74,128 @@
             <div class="hero-mag-featured" id="hero-featured">
               <div class="hero-mag-featured-img">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid slice">
+                  <!-- Aged paper background -->
                   <defs>
-                    <linearGradient id="hg1" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#0f0c29"/>
-                      <stop offset="50%" stop-color="#302b63"/>
-                      <stop offset="100%" stop-color="#24243e"/>
+                    <linearGradient id="paper" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#f5f0e8"/>
+                      <stop offset="50%" stop-color="#ede8d8"/>
+                      <stop offset="100%" stop-color="#e8e0cc"/>
                     </linearGradient>
-                    <radialGradient id="hg2" cx="70%" cy="30%" r="50%">
-                      <stop offset="0%" stop-color="#6c63ff" stop-opacity="0.4"/>
-                      <stop offset="100%" stop-color="#0f0c29" stop-opacity="0"/>
-                    </radialGradient>
-                    <radialGradient id="hg3" cx="20%" cy="80%" r="40%">
-                      <stop offset="0%" stop-color="#ff6584" stop-opacity="0.3"/>
-                      <stop offset="100%" stop-color="#0f0c29" stop-opacity="0"/>
-                    </radialGradient>
+                    <filter id="noise">
+                      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+                      <feColorMatrix type="saturate" values="0"/>
+                      <feBlend in="SourceGraphic" mode="multiply" result="blend"/>
+                      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+                    </filter>
                   </defs>
-                  <rect width="800" height="460" fill="url(#hg1)"/>
-                  <rect width="800" height="460" fill="url(#hg2)"/>
-                  <rect width="800" height="460" fill="url(#hg3)"/>
-                  <g opacity="0.07" stroke="#a78bfa" stroke-width="1">
-                    <line x1="0" y1="60" x2="800" y2="60"/><line x1="0" y1="120" x2="800" y2="120"/>
-                    <line x1="0" y1="180" x2="800" y2="180"/><line x1="0" y1="240" x2="800" y2="240"/>
-                    <line x1="0" y1="300" x2="800" y2="300"/><line x1="0" y1="360" x2="800" y2="360"/>
-                    <line x1="100" y1="0" x2="100" y2="460"/><line x1="200" y1="0" x2="200" y2="460"/>
-                    <line x1="300" y1="0" x2="300" y2="460"/><line x1="400" y1="0" x2="400" y2="460"/>
-                    <line x1="500" y1="0" x2="500" y2="460"/><line x1="600" y1="0" x2="600" y2="460"/>
-                    <line x1="700" y1="0" x2="700" y2="460"/>
-                  </g>
-                  <circle cx="600" cy="100" r="120" fill="none" stroke="#6c63ff" stroke-width="1" opacity="0.2"/>
-                  <circle cx="600" cy="100" r="80" fill="none" stroke="#6c63ff" stroke-width="1" opacity="0.25"/>
-                  <circle cx="600" cy="100" r="40" fill="#6c63ff" opacity="0.15"/>
-                  <circle cx="150" cy="320" r="80" fill="none" stroke="#ff6584" stroke-width="1" opacity="0.2"/>
-                  <circle cx="150" cy="320" r="40" fill="#ff6584" opacity="0.1"/>
-                  <g transform="translate(320,140)">
-                    <ellipse cx="70" cy="70" rx="60" ry="60" fill="#6c63ff" opacity="0.12"/>
-                    <path d="M70,20 Q105,38 100,72 Q94,102 70,115 Q46,102 40,72 Q35,38 70,20Z" fill="#a78bfa" opacity="0.55"/>
-                    <path d="M70,20 Q88,45 83,72 Q78,98 70,115 Q62,98 57,72 Q52,45 70,20Z" fill="#fff" opacity="0.18"/>
-                    <line x1="70" y1="115" x2="64" y2="138" stroke="#a78bfa" stroke-width="2.5" opacity="0.8"/>
-                    <line x1="40" y1="72" x2="100" y2="72" stroke="#fff" stroke-width="0.8" opacity="0.25"/>
-                    <line x1="44" y1="55" x2="96" y2="55" stroke="#fff" stroke-width="0.8" opacity="0.2"/>
-                    <line x1="50" y1="90" x2="90" y2="90" stroke="#fff" stroke-width="0.8" opacity="0.2"/>
-                  </g>
-                  <circle cx="200" cy="60" r="1.5" fill="#fff" opacity="0.7"/>
-                  <circle cx="400" cy="80" r="3" fill="#a78bfa" opacity="0.8"/>
-                  <circle cx="520" cy="30" r="1.5" fill="#fff" opacity="0.6"/>
-                  <circle cx="700" cy="300" r="4" fill="#ff6584" opacity="0.5"/>
-                  <circle cx="100" cy="180" r="3" fill="#6c63ff" opacity="0.6"/>
-                  <rect x="60" y="390" width="180" height="5" rx="3" fill="#fff" opacity="0.07"/>
-                  <rect x="60" y="404" width="120" height="5" rx="3" fill="#fff" opacity="0.05"/>
-                  <rect x="500" y="390" width="240" height="5" rx="3" fill="#fff" opacity="0.07"/>
+                  <rect width="800" height="460" fill="url(#paper)"/>
+                  <!-- Noise/texture overlay -->
+                  <rect width="800" height="460" fill="#c8b89a" opacity="0.08" filter="url(#noise)"/>
+                  <!-- Stain marks for aged effect -->
+                  <ellipse cx="720" cy="40" rx="60" ry="30" fill="#b8a882" opacity="0.08"/>
+                  <ellipse cx="80" cy="420" rx="80" ry="25" fill="#b8a882" opacity="0.07"/>
+
+                  <!-- TOP BORDER LINES -->
+                  <rect x="20" y="18" width="760" height="3" fill="#1a1a1a"/>
+                  <rect x="20" y="24" width="760" height="1" fill="#1a1a1a"/>
+
+                  <!-- MASTHEAD -->
+                  <text x="400" y="52" font-family="Georgia,serif" font-size="28" font-weight="bold" fill="#1a1a1a" text-anchor="middle" letter-spacing="8">THE INKWELL GAZETTE</text>
+                  <rect x="20" y="58" width="760" height="1.5" fill="#1a1a1a"/>
+
+                  <!-- DATE + EDITION LINE -->
+                  <text x="30" y="74" font-family="Georgia,serif" font-size="9" fill="#444" letter-spacing="1">VOL. CXLII . . . No. 49,284</text>
+                  <text x="400" y="74" font-family="Georgia,serif" font-size="9" fill="#444" text-anchor="middle" letter-spacing="1">MONDAY, JANUARY 1, 2024</text>
+                  <text x="770" y="74" font-family="Georgia,serif" font-size="9" fill="#444" text-anchor="end" letter-spacing="1">PRICE: FREE</text>
+                  <rect x="20" y="78" width="760" height="1" fill="#1a1a1a"/>
+
+                  <!-- MAIN HEADLINE -->
+                  <text x="30" y="108" font-family="Georgia,serif" font-size="26" font-weight="bold" fill="#1a1a1a" letter-spacing="0.5">The Art of Writing in the</text>
+                  <text x="30" y="136" font-family="Georgia,serif" font-size="26" font-weight="bold" fill="#1a1a1a" letter-spacing="0.5">Digital Age Has Arrived</text>
+                  <rect x="30" y="142" width="740" height="1" fill="#555"/>
+
+                  <!-- SUBHEADLINE -->
+                  <text x="30" y="158" font-family="Georgia,serif" font-size="11" font-style="italic" fill="#333">Inkwell Magazine explores how modern storytellers are reshaping the written word</text>
+                  <rect x="30" y="163" width="740" height="0.5" fill="#aaa"/>
+
+                  <!-- BYLINE -->
+                  <text x="30" y="176" font-family="Georgia,serif" font-size="9" fill="#555" letter-spacing="1">By THE INKWELL EDITORS  |  Staff Writers</text>
+                  <rect x="30" y="180" width="740" height="0.5" fill="#ccc"/>
+
+                  <!-- COLUMN DIVIDERS -->
+                  <line x1="290" y1="188" x2="290" y2="435" stroke="#aaa" stroke-width="0.8"/>
+                  <line x1="520" y1="188" x2="520" y2="435" stroke="#aaa" stroke-width="0.8"/>
+
+                  <!-- COLUMN 1: TEXT LINES -->
+                  <text x="30" y="200" font-family="Georgia,serif" font-size="8.5" fill="#222">In an era defined by fleeting digital content,</text>
+                  <text x="30" y="212" font-family="Georgia,serif" font-size="8.5" fill="#222">the written word has found new life across</text>
+                  <text x="30" y="224" font-family="Georgia,serif" font-size="8.5" fill="#222">platforms, blogs, and digital publications</text>
+                  <text x="30" y="236" font-family="Georgia,serif" font-size="8.5" fill="#222">that reach millions of readers worldwide.</text>
+                  <text x="30" y="248" font-family="Georgia,serif" font-size="8.5" fill="#222">Writers today face both challenges and</text>
+                  <text x="30" y="260" font-family="Georgia,serif" font-size="8.5" fill="#222">opportunities unlike any previous generation.</text>
+                  <text x="30" y="272" font-family="Georgia,serif" font-size="8.5" fill="#222">The tools have changed, but the craft</text>
+                  <text x="30" y="284" font-family="Georgia,serif" font-size="8.5" fill="#222">remains as demanding and rewarding as ever.</text>
+                  <!-- Drop cap effect -->
+                  <rect x="30" y="296" width="250" height="0.5" fill="#ccc"/>
+                  <text x="30" y="316" font-family="Georgia,serif" font-size="22" font-weight="bold" fill="#1a1a1a">T</text>
+                  <text x="48" y="308" font-family="Georgia,serif" font-size="8.5" fill="#222">he rise of platforms like Inkwell has</text>
+                  <text x="30" y="320" font-family="Georgia,serif" font-size="8.5" fill="#222">democratized publishing, allowing voices</text>
+                  <text x="30" y="332" font-family="Georgia,serif" font-size="8.5" fill="#222">from every corner to be heard globally.</text>
+                  <text x="30" y="344" font-family="Georgia,serif" font-size="8.5" fill="#222">This transformation has redefined what it</text>
+                  <text x="30" y="356" font-family="Georgia,serif" font-size="8.5" fill="#222">means to be a writer in the modern world.</text>
+                  <text x="30" y="368" font-family="Georgia,serif" font-size="8.5" fill="#222">Community, feedback, and reach now form</text>
+                  <text x="30" y="380" font-family="Georgia,serif" font-size="8.5" fill="#222">the backbone of every successful author.</text>
+                  <text x="30" y="392" font-family="Georgia,serif" font-size="8.5" fill="#222">Join Inkwell and begin your story today.</text>
+
+                  <!-- COLUMN 2: PHOTO PLACEHOLDER -->
+                  <rect x="300" y="188" width="210" height="140" fill="#d4ccb8" rx="1"/>
+                  <rect x="300" y="188" width="210" height="140" fill="none" stroke="#aaa" stroke-width="0.8"/>
+                  <!-- Photo scene: desk with pen -->
+                  <rect x="310" y="270" width="190" height="50" fill="#c8bfa8"/>
+                  <ellipse cx="405" cy="270" rx="95" ry="8" fill="#b8af98"/>
+                  <rect x="360" y="240" width="90" height="30" fill="#e8e0cc" rx="2"/>
+                  <line x1="368" y1="248" x2="442" y2="248" stroke="#aaa" stroke-width="1"/>
+                  <line x1="368" y1="254" x2="442" y2="254" stroke="#aaa" stroke-width="1"/>
+                  <line x1="368" y1="260" x2="430" y2="260" stroke="#aaa" stroke-width="1"/>
+                  <path d="M330,265 Q340,230 345,268" fill="none" stroke="#666" stroke-width="2"/>
+                  <circle cx="332" cy="264" r="3" fill="#888"/>
+                  <text x="405" y="342" font-family="Georgia,serif" font-size="8" fill="#666" text-anchor="middle" font-style="italic">A writer's desk, symbol of craft</text>
+
+                  <!-- Column 2 text below photo -->
+                  <text x="300" y="358" font-family="Georgia,serif" font-size="8.5" fill="#222">Storytelling has always been central</text>
+                  <text x="300" y="370" font-family="Georgia,serif" font-size="8.5" fill="#222">to the human experience. From cave</text>
+                  <text x="300" y="382" font-family="Georgia,serif" font-size="8.5" fill="#222">walls to digital screens, the impulse</text>
+                  <text x="300" y="394" font-family="Georgia,serif" font-size="8.5" fill="#222">to share ideas never fades away.</text>
+
+                  <!-- COLUMN 3 -->
+                  <!-- Pull quote box -->
+                  <rect x="530" y="188" width="240" height="80" fill="#1a1a1a" rx="1"/>
+                  <text x="650" y="215" font-family="Georgia,serif" font-size="11" font-style="italic" fill="#f5f0e8" text-anchor="middle">&quot;Every great story begins</text>
+                  <text x="650" y="230" font-family="Georgia,serif" font-size="11" font-style="italic" fill="#f5f0e8" text-anchor="middle">with a single word written</text>
+                  <text x="650" y="245" font-family="Georgia,serif" font-size="11" font-style="italic" fill="#f5f0e8" text-anchor="middle">with conviction.&quot;</text>
+                  <text x="650" y="260" font-family="Georgia,serif" font-size="8" fill="#aaa" text-anchor="middle">— Inkwell Editorial Board</text>
+
+                  <text x="530" y="292" font-family="Georgia,serif" font-size="8.5" fill="#222">From seasoned journalists to first-time</text>
+                  <text x="530" y="304" font-family="Georgia,serif" font-size="8.5" fill="#222">bloggers, Inkwell welcomes every voice.</text>
+                  <text x="530" y="316" font-family="Georgia,serif" font-size="8.5" fill="#222">Our platform provides the tools and</text>
+                  <text x="530" y="328" font-family="Georgia,serif" font-size="8.5" fill="#222">community to help writers grow and</text>
+                  <text x="530" y="340" font-family="Georgia,serif" font-size="8.5" fill="#222">connect with audiences worldwide.</text>
+                  <rect x="530" y="348" width="240" height="0.5" fill="#aaa"/>
+                  <text x="530" y="362" font-family="Georgia,serif" font-size="9" font-weight="bold" fill="#1a1a1a">INSIDE THIS ISSUE:</text>
+                  <text x="530" y="376" font-family="Georgia,serif" font-size="8.5" fill="#333">&#x2022; How to craft compelling headlines</text>
+                  <text x="530" y="389" font-family="Georgia,serif" font-size="8.5" fill="#333">&#x2022; Top writers share their secrets</text>
+                  <text x="530" y="402" font-family="Georgia,serif" font-size="8.5" fill="#333">&#x2022; Building your reader community</text>
+                  <text x="530" y="415" font-family="Georgia,serif" font-size="8.5" fill="#333">&#x2022; The future of digital publishing</text>
+
+                  <!-- BOTTOM BORDER -->
+                  <rect x="20" y="438" width="760" height="1" fill="#aaa"/>
+                  <rect x="20" y="442" width="760" height="2.5" fill="#1a1a1a"/>
+                  <text x="400" y="455" font-family="Georgia,serif" font-size="8" fill="#666" text-anchor="middle" letter-spacing="2">INKWELL MAGAZINE — ALL RIGHTS RESERVED — EST. 2024</text>
                 </svg>
                 <div class="hero-mag-featured-overlay">
                   <span class="hero-mag-tag">Featured</span>
                   <h2 class="hero-mag-featured-title">The Art of Writing in the Digital Age</h2>
-                  <div class="hero-mag-featured-meta">By Inkwell Editors &nbsp;·&nbsp; 5 min read</div>
+                  <div class="hero-mag-featured-meta">By Inkwell Editors &nbsp;&middot;&nbsp; 5 min read</div>
                 </div>
               </div>
             </div>
