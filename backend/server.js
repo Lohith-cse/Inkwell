@@ -7,7 +7,7 @@ const { getDb, query, run, get, save } = require('./database');
 
 const app = express();
 const JWT_SECRET = process.env.JWT_SECRET || 'blog_platform_secret_key_2024';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
