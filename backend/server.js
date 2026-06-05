@@ -6,7 +6,8 @@ const path = require('path');
 const { getDb, query, run, get, save } = require('./database');
 
 const app = express();
-const JWT_SECRET = 'blog_platform_secret_key_2024';
+const JWT_SECRET = process.env.JWT_SECRET || 'blog_platform_secret_key_2024';
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -152,10 +153,12 @@ app.delete('/api/comments/:id', auth, (req, res) => {
 // ── SERVE FRONTEND ───────────────────────────────────────────────────────────
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  }
 });
 
 // ── START ─────────────────────────────────────────────────────────────────────
 getDb().then(() => {
-  app.listen(3000, () => console.log('🚀 Server running on http://localhost:3000'));
+  app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 });
